@@ -16,9 +16,7 @@ import { UserController, PostController } from './controllers/index.js';
 mongoose.set('strictQuery', false);
 
 mongoose
-  .connect(
-    'mongodb+srv://Vitalii:dfghjc243@cluster0.6376m08.mongodb.net/blog?retryWrites=true&w=majority'
-  )
+  .connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('DB Ok');
   })
@@ -84,7 +82,7 @@ app.patch(
   PostController.update
 );
 
-app.listen(4444, (err) => {
+app.listen(process.env.PORT || 4444, (err) => {
   if (err) {
     return console.log(err);
   } else {
